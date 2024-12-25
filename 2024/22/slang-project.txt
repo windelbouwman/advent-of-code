@@ -1,5 +1,4 @@
 
 ../aoclib.slang
 ../../sauce-os/Libs/base
-../../sauce-os/Libs/regex
 ../../sauce-os/runtime/std.slang
