@@ -1,5 +1,5 @@
 
-from std import print, read_file, str_len, str_get
+from std import print, read_file, str_len
 from strlib import split_lines, str_to_int, digit_to_int
 from datatypes import List
 from hashmap import HashMap, new_hashmap
@@ -91,7 +91,7 @@ fn diff_sequence_eq(a?: DiffSequence, b?: DiffSequence) -> bool:
 fn get_one_digit(value: int) -> int:
     let text = str(value)
     let n = str_len(text)
-    let c = str_get(text, index: n - 1)
+    let c = text[n - 1]
     digit_to_int(c)
 
 fn scramble(value: int, count: int) -> int:

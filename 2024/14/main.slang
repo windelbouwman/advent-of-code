@@ -1,5 +1,5 @@
 
-from std import print, read_file, str_slice
+from std import print, read_file
 from strlib import split_lines, str_to_int
 from math import modulo
 from regex import find_all, Match
