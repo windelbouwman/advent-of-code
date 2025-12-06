@@ -32,7 +32,8 @@ all: ${BUILDDIR}/day01.exe \
   ${BUILDDIR}/day20.exe \
   ${BUILDDIR}/day21.exe \
   ${BUILDDIR}/day22.exe \
-  ${BUILDDIR}/day23.exe
+  ${BUILDDIR}/day23.exe \
+  ${BUILDDIR}/day24.exe
 
 ${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${BUILDDIR}/slangrt.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libregex.o ${BUILDDIR}/libaoc.o
 	gcc -o $@ $< ${BUILDDIR}/slangrt.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libregex.o  ${BUILDDIR}/libaoc.o -lm
@@ -76,7 +77,7 @@ ${BUILDDIR}:
 ${BUILDDIR}/py:
 	mkdir -p ${BUILDDIR}/py
 
-profile: ${BUILDDIR}/day11.exe
+profile: ${BUILDDIR}/day23.exe
 	valgrind --tool=callgrind --callgrind-out-file=${BUILDDIR}/callgrind.out $<
 	kcachegrind ${BUILDDIR}/callgrind.out
 

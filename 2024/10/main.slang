@@ -130,11 +130,11 @@ fn load_grid(filename: str) -> Grid:
 class Grid:
     var rows: Vector[Vector[int]]
 
-    fn width() -> int:
+    pub fn width() -> int:
         rows[0].len()
     
-    fn height() -> int:
+    pub fn height() -> int:
         rows.len()
 
-    fn get(row: int, col: int) -> int:
+    pub fn get(row: int, col: int) -> int:
         rows[row][col]

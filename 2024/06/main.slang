@@ -171,14 +171,14 @@ fn copy_state(s?: State) -> State:
     State(pos: s.pos, dir: s.dir)
 
 class Grid:
-    var width: int
-    var height: int
-    var cells: Vector[char]
+    pub var width: int
+    pub var height: int
+    pub var cells: Vector[char]
 
-    fn get(pos: int) -> char:
+    pub fn get(pos: int) -> char:
         cells[pos]
 
-    fn set(pos: int, value: char):
+    pub fn set(pos: int, value: char):
         cells.set(index: pos, value)
 
 fn new_state_grid(grid: Grid) -> StateGrid:
@@ -192,18 +192,18 @@ fn new_state_grid(grid: Grid) -> StateGrid:
 class StateGrid:
     var data: Vector[int]
 
-    fn contains(s?: State) -> bool:
+    pub fn contains(s?: State) -> bool:
         let value = data[s.pos]
         let mask = 1 << dir_hash(s.dir)
         value & mask != 0
 
-    fn add(s?: State):
+    pub fn add(s?: State):
         let mask = 1 << dir_hash(s.dir)
         let value = data[s.pos]
         value = value | mask
         data.set(index: s.pos, value)
 
-    fn clear():
+    pub fn clear():
         let index = 0
         while index < data.len():
             data.set(index, value: 0)

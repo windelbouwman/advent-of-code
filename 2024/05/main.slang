@@ -25,7 +25,7 @@ fn is_valid(g: DiGraph, page: List[str]) -> bool:
         used.add(x)
     let visited = new_str_set()
     for x in page:
-        for dep in g.succ.get(key: x):
+        for dep in g.successors(x):
             if used.contains(dep) and not visited.contains(dep):
                 return false
         visited.add(x)
@@ -48,7 +48,7 @@ fn sort_page(g: DiGraph, page: List[str]) -> List[str]:
     while not page.is_empty():
         let x = page.pop_front()
         let solved = true
-        for dep in g.succ.get(key: str(x)):
+        for dep in g.successors(x):
             if used.contains(dep) and not visited.contains(dep):
                 page.append(x)
                 solved = false

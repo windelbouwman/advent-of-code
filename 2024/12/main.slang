@@ -151,11 +151,11 @@ fn position_hash(a?: Position) -> int:
 class Grid:
     var rows: Vector[Vector[char]]
 
-    fn width() -> int:
+    pub fn width() -> int:
         rows[0].len()
     
-    fn height() -> int:
+    pub fn height() -> int:
         rows.len()
 
-    fn get(p?: Position) -> char:
+    pub fn get(p?: Position) -> char:
         rows[p.row][p.col]

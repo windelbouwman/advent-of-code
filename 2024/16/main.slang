@@ -169,5 +169,5 @@ class Grid:
     fn height() -> int:
         rows.len()
 
-    fn get(row: int, col: int) -> char:
+    pub fn get(row: int, col: int) -> char:
         rows[row][col]

@@ -219,16 +219,16 @@ enum Direction:
 class Grid:
     var rows: Vector[Vector[char]]
 
-    fn width() -> int:
+    pub fn width() -> int:
         rows[0].len()
     
-    fn height() -> int:
+    pub fn height() -> int:
         rows.len()
 
-    fn get(p?: Position) -> char:
+    pub fn get(p?: Position) -> char:
         rows[p.row][p.col]
 
-    fn set(p?: Position, value: char):
+    pub fn set(p?: Position, value: char):
         rows[p.row].set(index: p.col, value)
 
     fn dump(p?: Position):
