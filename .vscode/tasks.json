@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "2025",
+            "type": "shell",
+            "command": "make -C ${workspaceFolder}/2025",
+            "problemMatcher": {
+                "owner": "slang",
+                "source": "slang",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^([^\\s]+):(\\d+).(\\d+)-(\\d+).(\\d+): (warning|error) (.+$)",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "endLine": 4,
+                        "endColumn": 5,
+                        "severity": 6,
+                        "message": 7
+                    }
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
