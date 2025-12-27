@@ -1,13 +1,11 @@
-from std import print, read_file, str_slice, str_len
+from std import print, read_file, str_slice, str_len, get_arg
 from strlib import trim, split_string, str_to_int
 from math import modulo
 from listtype import List
 from utils import panic
 
 pub fn main() -> int:
-	let filename = "02/example.txt"
-	# let filename = "02/input.txt"
-	let ranges = read_ranges(filename)
+	let ranges = read_ranges(filename: get_arg(arg: 0))
 	part1(ranges)
 	part2(ranges)
 	0

@@ -1,4 +1,4 @@
-from std import print, read_file, str_slice, str_len, ord
+from std import print, read_file, str_slice, str_len, ord, get_arg
 from strlib import trim, split_string, str_to_int, split_lines
 from math import modulo
 from listtype import List
@@ -8,9 +8,7 @@ from utils import panic
 type Bank = Vector[int]
 
 pub fn main() -> int:
-	# let filename = "03/example.txt"
-	let filename = "03/input.txt"
-	let banks = read_banks(filename)
+	let banks = read_banks(filename: get_arg(arg: 0))
 	part1(banks)
 	part2(banks)
 	0
