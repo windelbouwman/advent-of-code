@@ -1,8 +1,10 @@
+module main
+
 from std import print, read_file, str_slice, str_len, get_arg
-from strlib import trim, split_string, str_to_int
-from math import modulo
-from listtype import List
-from utils import panic
+from base.strlib import trim, split_string, str_to_int
+from base.math import modulo
+from base.listtype import List
+from base.utils import panic
 
 pub fn main() -> int:
 	let ranges = read_ranges(filename: get_arg(arg: 0))

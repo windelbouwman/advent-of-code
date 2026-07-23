@@ -1,6 +1,8 @@
+module main
+
 from std import print, read_file, get_arg
-from strlib import trim, split_lines
-from vectype import Vector, new_vector
+from base.strlib import trim, split_lines
+from base.vectype import Vector, new_vector
 
 type Diagram = Vector[str]
 

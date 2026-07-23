@@ -23,13 +23,16 @@ all: ${BUILDDIR}/day01.exe \
 test: all
 	pytest -v test_days.py
 
-${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${BUILDDIR}/slangrt.o ${BUILDDIR}/slangrt_mm.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o
-	gcc -o $@ $< ${BUILDDIR}/slangrt.o ${BUILDDIR}/slangrt_mm.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o -lm
+${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${BUILDDIR}/slangrt.o ${BUILDDIR}/slangrt_mm.o ${BUILDDIR}/slangrt_main.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o
+	gcc -o $@ $< ${BUILDDIR}/slangrt.o ${BUILDDIR}/slangrt_mm.o ${BUILDDIR}/slangrt_main.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o -lm
 
 ${BUILDDIR}/slangrt.o: ${SLANG_FOLDER}/runtime/slangrt.c | ${BUILDDIR}
 	gcc ${CFLAGS} -c -o $@ $<
 
 ${BUILDDIR}/slangrt_mm.o: ${SLANG_FOLDER}/runtime/slangrt_mm.c | ${BUILDDIR}
+	gcc ${CFLAGS} -c -o $@ $<
+
+${BUILDDIR}/slangrt_main.o: ${SLANG_FOLDER}/runtime/slangrt_main.c ${SLANG_FOLDER}/runtime/slangrt.h | ${BUILDDIR}
 	gcc ${CFLAGS} -c -o $@ $<
 
 ${BUILDDIR}/day%.o: ./%/main.slang ${BUILDDIR}/libbase.json ${BUILDDIR}/libaoc.json | ${BUILDDIR}

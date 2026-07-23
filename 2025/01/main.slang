@@ -1,8 +1,9 @@
+module main
 
 from std import print, read_file, str_len, str_get, str_slice, get_arg
-from strlib import split_lines, str_to_int
-from math import modulo, abs
-from listtype import List
+from base.strlib import split_lines, str_to_int
+from base.math import modulo, abs
+from base.listtype import List
 
 struct Pair:
 	c: char

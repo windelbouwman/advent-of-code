@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/windelbouwman/sauce-os:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - run: echo "running inside sauce-os container"
+      - run: apk add build-base
+      - run: /src/build/x86/apps/compiler.exe --help
+      - run: tree
+      - run: make -C 2025
