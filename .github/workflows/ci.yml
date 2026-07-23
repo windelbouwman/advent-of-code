@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/windelbouwman/sauce-os:latest
+    env:
+      LDFLAGS: '--dynamic-linker /lib/ld-musl-x86_64.so.1'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - run: make -C 2025
+      - run: 2025/build/day01.exe 2025/01/example.txt

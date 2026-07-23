@@ -1,9 +1,11 @@
+module main
+
 from std import print, read_file, str_slice, str_len, get_arg
-from strlib import trim, split_string, str_to_int, split_lines
-from sorting import sort_list
-from math import modulo, max
-from listtype import List
-from utils import panic
+from base.strlib import trim, split_string, str_to_int, split_lines
+from base.sorting import sort_list
+from base.math import modulo, max
+from base.listtype import List
+from base.utils import panic
 
 struct Puzzle:
 	ranges: List[Range2]

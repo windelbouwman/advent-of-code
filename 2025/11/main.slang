@@ -1,9 +1,11 @@
+module main
+
 from std import print, read_file, get_arg
-from strlib import trim, split_lines, split_string
-from graphlib import DiGraph
-from vectype import Vector, new_vector
-from hashmap import HashMap, new_hashmap_str
-from utils import panic
+from base.strlib import trim, split_lines, split_string
+from base.graphlib import DiGraph
+from base.vectype import Vector, new_vector
+from base.hashmap import HashMap, new_hashmap_str
+from base.utils import panic
 
 pub fn main() -> int:
 	let g = read_graph(filename: get_arg(arg: 0))

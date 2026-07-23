@@ -1,13 +1,14 @@
+module main
 
-from vectype import Vector, new_vector
-from listtype import List
-from optiontype import option_unwrap
+from base.vectype import Vector, new_vector
+from base.listtype import List
+from base.optiontype import option_unwrap
 from std import print, read_file, get_arg
-from strlib import trim, split_lines, str_to_int, split_string
-from math import abs, min
-from utils import unimplemented
-from sorting import sort_list
-from shapelib import Polygon, Path, Point, str_point
+from base.strlib import trim, split_lines, str_to_int, split_string
+from base.math import abs, min
+from base.utils import unimplemented
+from base.sorting import sort_list
+from base.shapelib import Polygon, Path, Point, str_point
 
 type Points = Vector[Point]
 

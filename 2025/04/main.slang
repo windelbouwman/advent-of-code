@@ -1,10 +1,12 @@
+module main
+
 from std import print, read_file, str_slice, str_len, ord, get_arg
-from strlib import trim, split_string, str_to_int, split_lines
-from math import modulo
-from regex import split_at_pattern
-from listtype import List
-from vectype import Vector, new_vector
-from utils import panic
+from base.strlib import trim, split_string, str_to_int, split_lines
+from base.math import modulo
+from base.regex import split_at_pattern
+from base.listtype import List
+from base.vectype import Vector, new_vector
+from base.utils import panic
 
 struct Grid:
 	width: int

@@ -1,7 +1,8 @@
+module aoclib
 
 from std import str_len, str_slice
-from strlib import split_string, trim, str_to_int
-from listtype import List
+from base.strlib import split_string, trim, str_to_int
+from base.listtype import List
 
 pub fn get_numbers(text: str, sep: char) -> List[int]:
 	let numbers: List[int] = List()
