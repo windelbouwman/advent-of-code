@@ -20,7 +20,7 @@ all: ${BUILDDIR}/day01.exe \
 test: all
 	pytest -v test_days.py
 
-${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${SLANG_BUILD}/x86/libslangrt.so ${SLANG_BUILD}/slangrt_main.o ${SLANG_BUILD}/x86/libbase.o ${BUILDDIR}/libaoc.o
+${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${SLANG_BUILD}/x86/libslangrt.so ${SLANG_BUILD}/slangrt_main.o ${SLANG_BUILD}/x86/libbase.so ${BUILDDIR}/libaoc.o
 	ld ${LDFLAGS} -o $@ -L ${SLANG_BUILD}/x86 -rpath ${SLANG_BUILD}/x86 /usr/lib/crt1.o /usr/lib/crti.o $< ${SLANG_BUILD}/slangrt_main.o ${BUILDDIR}/libaoc.o -lbase -lslangrt -lm -lc /usr/lib/crtn.o
 
 ${BUILDDIR}/day%.o: ./%/main.slang ${SLANG_BUILD}/x86/libbase.json ${BUILDDIR}/libaoc.json | ${BUILDDIR}
