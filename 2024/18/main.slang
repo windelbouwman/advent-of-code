@@ -75,7 +75,7 @@ struct Ctx:
 	grid: Set[Position]
 	N: int
 	queue: PriorityQueue[PositionAndCost]
-	cost_map: HashMap[Position, int]
+	cost_map: HashMap[Position,int]
 
 fn try_direction(ctx: Ctx, p: Position, dx: int, dy: int, new_cost: int):
 	let x = p.x + dx

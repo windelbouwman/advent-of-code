@@ -100,7 +100,7 @@ fn part2(grid: Grid, s: State):
 	print("Part2: {options.len()}")
 
 fn would_loop(grid: Grid, state_grid: StateGrid, s: State) -> bool:
-	""" Check if we would loop if we would need to turn and step once """
+	"""Check if we would loop if we would need to turn and step once"""
 	state_grid.clear()
 	let w = grid.width
 	let h = grid.height
@@ -131,9 +131,9 @@ fn would_loop(grid: Grid, state_grid: StateGrid, s: State) -> bool:
 
 		# Check next cell:
 		let c = grid.get(pos)
-		if c == '.': # Move ahead
+		if c == '.':  # Move ahead
 			s.pos = pos
-		elif c == '#': # Turn
+		elif c == '#':  # Turn
 			if state_grid.contains(s):
 				return true
 			else:

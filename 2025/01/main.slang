@@ -2,7 +2,7 @@ module main
 
 from std import print, read_file, str_len, str_get, str_slice, get_arg
 from base.strlib import split_lines, str_to_int
-from base.math import modulo, abs
+from base.math import modulo
 from base.listtype import List
 
 struct Pair:

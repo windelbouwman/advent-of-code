@@ -19,3 +19,4 @@ jobs:
       - run: make -C 2025
       - run: 2025/build/day01.exe 2025/01/example.txt
       - run: make -C 2024
+      - run: make -C 2023

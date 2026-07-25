@@ -31,8 +31,8 @@ fn part_1(robots: List[Robot], x_max: int, y_max: int):
 
 	print("Part1: {s}")
 
-fn count_quadrants(robots: List[Robot], x_max: int, y_max: int) -> HashMap[int, int]:
-	let q_counter: HashMap[int, int] = new_hashmap_int()
+fn count_quadrants(robots: List[Robot], x_max: int, y_max: int) -> HashMap[int,int]:
+	let q_counter: HashMap[int,int] = new_hashmap_int()
 	q_counter.insert(key: 0, value: 0)
 	q_counter.insert(key: 1, value: 0)
 	q_counter.insert(key: 2, value: 0)

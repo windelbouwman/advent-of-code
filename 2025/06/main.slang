@@ -1,8 +1,7 @@
 module main
 
-from std import print, read_file, str_slice, str_len, ord, get_arg
-from base.strlib import trim, split_string, str_to_int, split_lines, digit_to_int, is_digit
-from base.math import modulo
+from std import print, read_file, str_len, get_arg
+from base.strlib import trim, str_to_int, split_lines, digit_to_int, is_digit
 from base.regex import split_at_pattern
 from base.listtype import List
 from base.vectype import Vector, new_vector
@@ -68,7 +67,7 @@ fn part2(worksheet: Worksheet):
 			values.append(value)
 
 		# Check operator:
-		let op = worksheet[n_rows-1][column]
+		let op = worksheet[n_rows - 1][column]
 		if op == '*':
 			total += calculate_product(values)
 			values.clear()

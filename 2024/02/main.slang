@@ -48,7 +48,7 @@ fn diff(values?: List[int]) -> List[int]:
 	var index = 1
 	let res: List[int] = List()
 	while index < values.len():
-		res.append(values[index] - values[index - 1])
+		res.append(values[index]-values[index - 1])
 		index += 1
 	res
 

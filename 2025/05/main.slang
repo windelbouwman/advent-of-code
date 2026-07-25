@@ -1,9 +1,9 @@
 module main
 
-from std import print, read_file, str_slice, str_len, get_arg
+from std import print, read_file, get_arg
 from base.strlib import trim, split_string, str_to_int, split_lines
 from base.sorting import sort_list
-from base.math import modulo, max
+from base.math import max
 from base.listtype import List
 from base.utils import panic
 

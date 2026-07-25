@@ -1,13 +1,13 @@
 
-.SUFFIXES:
-.PRECIOUS: ${BUILDDIR}/%.c
-
 BUILDDIR=build
-SLANG_FOLDER=../sauce-os
-BASE_LIB_SRCS := $(wildcard ${SLANG_FOLDER}/Libs/base/*.slang)
-BASE_LIB_SRCS += ${SLANG_FOLDER}/runtime/std.slang
+SLANG_ROOT ?= ../sauce-os
+SLANG_BUILD=${SLANG_ROOT}/build
+SLANGC := $(SLANG_BUILD)/x86/apps/compiler.exe
 AOC_LIB_SRCS=aoclib.slang
 CFLAGS=-I${SLANG_FOLDER}/runtime
+LDFLAGS ?= --dynamic-linker /lib64/ld-linux-x86-64.so.2
+
+.PHONY: all format profile clean
 
 all: ${BUILDDIR}/day01.exe ${BUILDDIR}/day02.exe ${BUILDDIR}/day03.exe ${BUILDDIR}/day04.exe ${BUILDDIR}/day05.exe \
   ${BUILDDIR}/day06.exe \
@@ -23,32 +23,20 @@ all: ${BUILDDIR}/day01.exe ${BUILDDIR}/day02.exe ${BUILDDIR}/day03.exe ${BUILDDI
   ${BUILDDIR}/day16.exe \
   ${BUILDDIR}/day17.exe
 
-${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${BUILDDIR}/slangrt.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o
-	gcc -o $@ $< ${BUILDDIR}/slangrt.o ${BUILDDIR}/aoclib-c.o ${BUILDDIR}/libbase.o ${BUILDDIR}/libaoc.o -lm
+${BUILDDIR}/day%.exe: ${BUILDDIR}/day%.o ${SLANG_BUILD}/slangrt_main.o ${SLANG_BUILD}/x86/libbase.so ${SLANG_BUILD}/x86/libslangrt.so ${BUILDDIR}/libaoc.o
+	ld ${LDFLAGS} -o $@ -L ${SLANG_BUILD}/x86 -rpath ${SLANG_BUILD}/x86 /usr/lib/crt1.o /usr/lib/crti.o $< ${SLANG_BUILD}/slangrt_main.o ${BUILDDIR}/libaoc.o -lbase -lslangrt -lm -lc /usr/lib/crtn.o
 
-${BUILDDIR}/day%.o: ${BUILDDIR}/day%.c
-	gcc ${CFLAGS} -c -o $@ $<
+${BUILDDIR}/day%.o: ./%/main.slang ${SLANG_BUILD}/x86/libbase.json ${BUILDDIR}/libaoc.json | ${BUILDDIR}
+	${SLANGC} -Wunused --backend-x86 --add-import ${SLANG_BUILD}/x86/libbase.json --add-import ${BUILDDIR}/libaoc.json -o $@ $<
 
-${BUILDDIR}/lib%.o: ${BUILDDIR}/lib%.c
-	gcc ${CFLAGS} -c -o $@ $<
-
-${BUILDDIR}/day%.c: ./%/main.slang ${BUILDDIR}/libbase.json ${BUILDDIR}/libaoc.json | ${BUILDDIR}
-	slangc --backend-c --add-import ${BUILDDIR}/libbase.json --add-import ${BUILDDIR}/libaoc.json -o $@ $<
-
-${BUILDDIR}/slangrt.o: ${SLANG_FOLDER}/runtime/slangrt.c | ${BUILDDIR}
-	gcc ${CFLAGS} -c -o $@ $<
-
-${BUILDDIR}/aoclib-c.o: aoclib-c.c | ${BUILDDIR}
-	gcc ${CFLAGS} -c -o $@ $<
-
-${BUILDDIR}/libaoc.c ${BUILDDIR}/libaoc.json: ${AOC_LIB_SRCS} ${BUILDDIR}/libbase.json | ${BUILDDIR}
-	slangc --backend-c --add-import ${BUILDDIR}/libbase.json --gen-export ${BUILDDIR}/libaoc.json -o ${BUILDDIR}/libaoc.c ${AOC_LIB_SRCS}
-
-${BUILDDIR}/libbase.c ${BUILDDIR}/libbase.json: ${BASE_LIB_SRCS} | ${BUILDDIR}
-	slangc --backend-c --gen-export ${BUILDDIR}/libbase.json -o ${BUILDDIR}/libbase.c ${BASE_LIB_SRCS}
+${BUILDDIR}/libaoc.o ${BUILDDIR}/libaoc.json: ${AOC_LIB_SRCS} ${SLANG_BUILD}/x86/libbase.json | ${BUILDDIR}
+	${SLANGC} --backend-x86 --add-import ${SLANG_BUILD}/x86/libbase.json --gen-export ${BUILDDIR}/libaoc.json -o ${BUILDDIR}/libaoc.o ${AOC_LIB_SRCS}
 
 ${BUILDDIR}:
 	mkdir -p ${BUILDDIR}
+
+format:
+	$(SLANG_BUILD)/x86/apps/format.exe --in-place **/*.slang
 
 profile: ${BUILDDIR}/day17.exe
 	valgrind --tool=callgrind --callgrind-out-file=${BUILDDIR}/callgrind.out ./${BUILDDIR}/day17.exe

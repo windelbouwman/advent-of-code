@@ -29,9 +29,9 @@ fn solve(filename: str):
 			break
 
 		if puzzle.grid.get(row: p.pos.row - 1, col: p.pos.col) == '.':
-			try_direction(context, row: p.pos.row - 1, col: p.pos.col,  new_cost: cost + 1)
+			try_direction(context, row: p.pos.row - 1, col: p.pos.col, new_cost: cost + 1)
 		if puzzle.grid.get(row: p.pos.row + 1, col: p.pos.col) == '.':
-			try_direction(context, row: p.pos.row + 1, col: p.pos.col,  new_cost: cost + 1)
+			try_direction(context, row: p.pos.row + 1, col: p.pos.col, new_cost: cost + 1)
 		if puzzle.grid.get(row: p.pos.row, col: p.pos.col - 1) == '.':
 			try_direction(context, row: p.pos.row, col: p.pos.col - 1, new_cost: cost + 1)
 		if puzzle.grid.get(row: p.pos.row, col: p.pos.col + 1) == '.':
@@ -65,7 +65,7 @@ fn try_direction(context: Context, row: int, col: int, new_cost: int):
 
 struct Context:
 	queue: PriorityQueue[PositionAndCost]
-	cost_map: HashMap[Position, int]
+	cost_map: HashMap[Position,int]
 
 fn compare_position_and_cost(a?: PositionAndCost, b?: PositionAndCost) -> bool:
 	a.cost < b.cost

@@ -170,7 +170,7 @@ fn get_crossings_along_infinite_hline(polygon: Polygon, y: int) -> List[int]:
 	crossings
 
 fn do_lines_cross(line: Line, line2: Line) -> bool:
-	""" Test if 2 lines cross """
+	"""Test if 2 lines cross"""
 	unimplemented("line crossing")
 
 fn polygon_to_lines(polygon: Polygon) -> List[Line]:
@@ -188,7 +188,7 @@ fn polygon_to_lines(polygon: Polygon) -> List[Line]:
 	pairs
 
 fn get_bounding_box(polygon: Polygon) -> Rectangle:
-	""" Get the bounding box of a polygon """
+	"""Get the bounding box of a polygon"""
 	let p1 = polygon.path.points[0]
 	var min_x = p1.x
 	var max_x = p1.x
@@ -211,7 +211,7 @@ fn rect_to_string(rect: Rectangle) -> str:
 	"Rect({rect.x},{rect.y},width={rect.width},height={rect.height})"
 
 fn grow_rect(rect: Rectangle, amount: int) -> Rectangle:
-	""" Make rectangle a bit larger """
+	"""Make rectangle a bit larger"""
 	Rectangle:
 		x: rect.x - amount
 		y: rect.y - amount
@@ -219,7 +219,7 @@ fn grow_rect(rect: Rectangle, amount: int) -> Rectangle:
 		height: rect.height + 2 * amount
 
 fn shrink_rect(rect: Rectangle, amount: int) -> Rectangle:
-	""" Make rectangle a bit larger """
+	"""Make rectangle a bit larger"""
 	Rectangle:
 		x: rect.x + amount
 		y: rect.y + amount

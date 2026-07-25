@@ -20,14 +20,14 @@ fn part2(numbers: List[int]):
 	print("Part2: {blink(numbers, N: 75)}")
 
 fn blink(numbers: List[int], N: int) -> int:
-	let cache: HashMap[State, int] = new_hashmap(f_hash: state_hash, f_eq: state_eq)
+	let cache: HashMap[State,int] = new_hashmap(f_hash: state_hash, f_eq: state_eq)
 	var s = 0
 	for x in numbers:
 		s += amount(cache, x, N)
 	s
 
-fn amount(cache: HashMap[State, int], x: int, N: int) -> int:
-	""" Blink the number x N times, and return how many stones this will create. """
+fn amount(cache: HashMap[State,int], x: int, N: int) -> int:
+	"""Blink the number x N times, and return how many stones this will create."""
 	if N > 0:
 		let s = State(x, N)
 		if cache.contains(key: s):
@@ -38,8 +38,8 @@ fn amount(cache: HashMap[State, int], x: int, N: int) -> int:
 			let value = if x == 0:
 				amount(cache, x: 1, N: N - 1)
 			elif w & 1 == 0:
-				let left = str_to_int(str_slice(text, begin: 0, end: w/2))
-				let right = str_to_int(str_slice(text, begin: w/2, end: w))
+				let left = str_to_int(str_slice(text, begin: 0, end: w / 2))
+				let right = str_to_int(str_slice(text, begin: w / 2, end: w))
 				amount(cache, x: left, N: N - 1) + amount(cache, x: right, N: N - 1)
 			else:
 				amount(cache, x: x * 2024, N: N - 1)

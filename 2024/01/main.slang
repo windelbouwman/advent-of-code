@@ -37,7 +37,7 @@ fn part1(puzzle: Puzzle):
 	var s = 0
 	var index = 0
 	while index < left.len():
-		let diff = abs(left[index] - right[index])
+		let diff = abs(left[index]-right[index])
 		s += diff
 		index += 1
 	print("Part1: {s}")

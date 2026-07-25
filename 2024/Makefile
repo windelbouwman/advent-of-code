@@ -12,6 +12,7 @@ LDFLAGS ?= --dynamic-linker /lib64/ld-linux-x86-64.so.2
 AOC_LIB_SRCS=aoclib.slang
 CFLAGS=-I${SLANG_FOLDER}/runtime
 
+.PHONY: all format
 all: ${BUILDDIR}/day01.exe \
   ${BUILDDIR}/day02.exe \
   ${BUILDDIR}/day03.exe \
@@ -43,13 +44,16 @@ ${BUILDDIR}/day%.o: ${BUILDDIR}/day%.c
 	gcc ${CFLAGS} -c -o $@ $<
 
 ${BUILDDIR}/day%.o: ./%/main.slang ${SLANG_BUILD}/x86/libbase.json ${BUILDDIR}/libaoc.json | ${BUILDDIR}
-	${SLANGC} --backend-x86 --add-import ${SLANG_BUILD}/x86/libbase.json --add-import ${BUILDDIR}/libaoc.json -o $@ $<
+	${SLANGC} -Wunused --backend-x86 --add-import ${SLANG_BUILD}/x86/libbase.json --add-import ${BUILDDIR}/libaoc.json -o $@ $<
 
 ${BUILDDIR}/libaoc.o ${BUILDDIR}/libaoc.json: ${AOC_LIB_SRCS} ${SLANG_BUILD}/x86/libbase.json | ${BUILDDIR}
 	${SLANGC} --backend-x86 --add-import ${SLANG_BUILD}/x86/libbase.json --gen-export ${BUILDDIR}/libaoc.json -o ${BUILDDIR}/libaoc.o ${AOC_LIB_SRCS}
 
 ${BUILDDIR}:
 	mkdir -p ${BUILDDIR}
+
+format:
+	$(SLANG_BUILD)/x86/apps/format.exe --in-place **/*.slang
 
 profile: ${BUILDDIR}/day23.exe
 	valgrind --tool=callgrind --callgrind-out-file=${BUILDDIR}/callgrind.out $<

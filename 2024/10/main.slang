@@ -58,7 +58,7 @@ fn find_hikes(grid: Grid, row: int, col: int) -> int:
 				if not visited.contains(s2):
 					backlog.append(s2)
 					visited.add(s2)
-			if s.col + 1< w and grid.get(row: s.row, col: s.col + 1) == x:
+			if s.col + 1 < w and grid.get(row: s.row, col: s.col + 1) == x:
 				let s2 = State(row: s.row, col: s.col + 1)
 				if not visited.contains(s2):
 					backlog.append(s2)
@@ -112,7 +112,7 @@ fn find_hikes2(grid: Grid, row: int, col: int) -> int:
 			if s.row + 1 < h and grid.get(row: s.row + 1, col: s.col) == x:
 				let s2 = State(row: s.row + 1, col: s.col)
 				backlog.append(s2)
-			if s.col + 1< w and grid.get(row: s.row, col: s.col + 1) == x:
+			if s.col + 1 < w and grid.get(row: s.row, col: s.col + 1) == x:
 				let s2 = State(row: s.row, col: s.col + 1)
 				backlog.append(s2)
 	nr

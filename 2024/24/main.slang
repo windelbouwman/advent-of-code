@@ -2,13 +2,11 @@ module main
 
 from std import print, read_file, str_len
 from base.utils import panic
-from base.strlib import split_lines, split_string, str_join, string_compare, trim, str_to_int
-from base.settype import new_str_set
+from base.strlib import split_lines, split_string, trim, str_to_int
 from base.listtype import List
 from base.optiontype import option_unwrap
 from base.hashmap import HashMap, new_hashmap_str
-from base.graphlib import Graph, find_all_cliques_of_size, find_max_cliques, DiGraph, topological_sort
-from base.sorting import sort_list
+from base.graphlib import DiGraph, topological_sort
 
 pub fn main() -> int:
 	solve(filename: "24/example.txt")

@@ -29,9 +29,9 @@ fn part1(diagram: Diagram):
 		var column = 0
 		while column < beams.len():
 			if beams[column] == 1 and row[column] == '^':
-				beams.set(index: column-1, value: 1)
+				beams.set(index: column - 1, value: 1)
 				beams.set(index: column, value: 0)
-				beams.set(index: column+1, value: 1)
+				beams.set(index: column + 1, value: 1)
 				n_splits += 1
 			column += 1
 	print("Part 1: {n_splits}")
@@ -45,8 +45,8 @@ fn part2(diagram: Diagram):
 		var column = 0
 		while column < beams.len():
 			if beams[column] > 0 and row[column] == '^':
-				beams.set(index: column-1, value: beams.get(index: column) + beams.get(index: column - 1))
-				beams.set(index: column+1, value: beams.get(index: column) + beams.get(index: column + 1))
+				beams.set(index: column - 1, value: beams.get(index: column) + beams.get(index: column - 1))
+				beams.set(index: column + 1, value: beams.get(index: column) + beams.get(index: column + 1))
 				beams.set(index: column, value: 0)
 			column += 1
 	var sum = 0

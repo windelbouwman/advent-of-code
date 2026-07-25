@@ -33,7 +33,7 @@ fn part1(grid: Grid):
 	print("Part1: {s}")
 
 fn find_area(grid: Grid, visited: Set[Position], p0: Position) -> int:
-	""" Perform a flood fill operation. """
+	"""Perform a flood fill operation."""
 	let w = grid.width()
 	let h = grid.height()
 	# let area: Set[Position] = new_set(f_hash: position_hash, f_eq: position_equal)
@@ -76,7 +76,7 @@ fn part2(grid: Grid):
 	print("Part2: {s}")
 
 fn find_area2(grid: Grid, visited: Set[Position], p0: Position) -> int:
-	""" Perform a flood fill operation, then detect corners. """
+	"""Perform a flood fill operation, then detect corners."""
 	let w = grid.width()
 	let h = grid.height()
 	let area: Set[Position] = new_set(f_hash: position_hash, f_eq: position_equal)

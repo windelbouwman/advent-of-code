@@ -31,22 +31,22 @@ fn run_machine(machine: Machine) -> List[int]:
 		let operand = machine.code[machine.pc + 1]
 		machine.pc += 2
 		switch opcode:
-			0: # adv
+			0:  # adv
 				machine.A = machine.A / (1 << combo(machine, operand))
-			1: # bxl
+			1:  # bxl
 				machine.B = machine.B ^ operand
-			2: # bst
+			2:  # bst
 				machine.B = modulo8(combo(machine, operand))
-			3: # jnz
+			3:  # jnz
 				if machine.A != 0:
 					machine.pc = operand
-			4: # bxc
+			4:  # bxc
 				machine.B = machine.B ^ machine.C
-			5: # out
+			5:  # out
 				output.append(modulo8(combo(machine, operand)))
-			6: # bdv
+			6:  # bdv
 				machine.B = machine.A / (1 << combo(machine, operand))
-			7: # cdv
+			7:  # cdv
 				machine.C = machine.A / (1 << combo(machine, operand))
 		else:
 			panic("Invalid operand: {opcode}!")

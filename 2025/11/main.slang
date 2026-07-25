@@ -36,13 +36,13 @@ fn part2(g: DiGraph):
 	let n4 = get_n_paths(g, from_node: "svr", to_node: "dac")
 	let n5 = get_n_paths(g, from_node: "dac", to_node: "fft")
 	let n6 = get_n_paths(g, from_node: "fft", to_node: "out")
-	let n_p2 = n4*n5*n6
+	let n_p2 = n4 * n5 * n6
 
 	let n_steps = n_p1 + n_p2
 	print("Part 2: {n_steps}")
 
 fn get_n_paths(g: DiGraph, from_node: str, to_node: str) -> int:
-	""" Find out how many paths exist between two nodes """
+	"""Find out how many paths exist between two nodes"""
 	let x = new_hashmap_str()
 	x.insert(key: to_node, value: 1)
 	while not x.contains(key: from_node):

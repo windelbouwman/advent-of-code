@@ -34,7 +34,7 @@ fn part2(ranges: List[Range]):
 	let sum = sum_invalid_ids(ranges, invalidator: is_invalid_2)
 	print("Part 2: {sum}")
 
-fn sum_invalid_ids(ranges: List[Range], invalidator: fn(int)->bool) -> int:
+fn sum_invalid_ids(ranges: List[Range], invalidator: fn(int) -> bool) -> int:
 	var sum = 0
 	var nr = 0
 	for pair in ranges:
@@ -79,7 +79,7 @@ fn split_in_groups(text: str, size: int) -> List[str]:
 	values
 
 fn all_equal(groups: List[str], reference: str) -> bool:
-	""" Check if all values in a list are the same """
+	"""Check if all values in a list are the same"""
 	if groups.len() < 2:
 		panic("Invalid")
 	for value in groups:

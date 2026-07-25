@@ -96,7 +96,7 @@ fn try_move2(grid: Grid, p: Position, drow: int, dcol: int):
 		do_move2(grid, p, drow, dcol)
 
 fn can_move2(grid: Grid, p: Position, drow: int, dcol: int) -> bool:
-	""" Test if we can move! """
+	"""Test if we can move!"""
 	let p1 = Position(row: p.row + drow, col: p.col + dcol)
 	let c = grid.get(p1)
 	if c == '#':
@@ -105,9 +105,9 @@ fn can_move2(grid: Grid, p: Position, drow: int, dcol: int) -> bool:
 		true
 	elif c == '[':
 		let p2 = Position(row: p1.row, col: p1.col + 1)  # ']'
-		if drow == 0 and dcol == 1: # Right
+		if drow == 0 and dcol == 1:  # Right
 			can_move2(grid, p: p2, drow, dcol)
-		elif dcol == 0: # Up/down
+		elif dcol == 0:  # Up/down
 			can_move2(grid, p: p1, drow, dcol) and can_move2(grid, p: p2, drow, dcol)
 		else:
 			panic("Invalid combination of drow and dcol 1")

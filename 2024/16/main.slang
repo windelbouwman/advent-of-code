@@ -18,8 +18,8 @@ pub fn main() -> int:
 fn solve(filename: str):
 	let puzzle = load_puzzle(filename)
 	let queue: PriorityQueue[PositionAndCost] = new_priority_queue_with_capacity(capacity: 10000, f: compare_position_and_cost)
-	let came_from: HashMap[Position, List[Position]] = new_hashmap(f_hash: position_hash, f_eq: position_equal)
-	let cost_map: HashMap[Position, int] = new_hashmap(f_hash: position_hash, f_eq: position_equal)
+	let came_from: HashMap[Position,List[Position]] = new_hashmap(f_hash: position_hash, f_eq: position_equal)
+	let cost_map: HashMap[Position,int] = new_hashmap(f_hash: position_hash, f_eq: position_equal)
 	try_direction(cost_map, queue, came_from, p: puzzle.start, row: puzzle.start.row, col: puzzle.start.col, dir: puzzle.start.dir, new_cost: 0)
 	var end = puzzle.end
 	while not queue.is_empty():
@@ -67,7 +67,7 @@ fn solve(filename: str):
 
 	print("Part2: {spots.len()}")
 
-fn try_direction(cost_map: HashMap[Position, int], queue: PriorityQueue[PositionAndCost], came_from: HashMap[Position, List[Position]], p: Position, row: int, col: int, dir: Direction, new_cost: int):
+fn try_direction(cost_map: HashMap[Position,int], queue: PriorityQueue[PositionAndCost], came_from: HashMap[Position,List[Position]], p: Position, row: int, col: int, dir: Direction, new_cost: int):
 	let p1 = Position(row, col, dir)
 	let cheaper = if cost_map.contains(key: p1):
 		new_cost < cost_map.get(key: p1)
